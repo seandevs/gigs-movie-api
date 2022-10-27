@@ -22,6 +22,6 @@ API Endpoints
 
 api.add_resource(
         MovieHandler,
-        '/movie/<int:movie_id>',
+        '/movies/<int:movie_id>',
         resource_class_kwargs={'service': movie_service}
     )

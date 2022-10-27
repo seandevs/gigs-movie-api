@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restful import Resource, abort
 
 from src.presenter.movie import MovieView
 
@@ -11,7 +11,7 @@ class MovieHandler(Resource):
         movie = self.service.get(movie_id)
 
         if not movie:
-            return None
+            abort(404, message=f"Movie with id {movie_id} doesn't exist")
 
         movie_view = MovieView(
                 movie_id,
