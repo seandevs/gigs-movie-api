@@ -3,7 +3,7 @@ from datetime import date
 
 
 @dataclass
-class MovieClass:
+class MovieView:
     id_: int
     name: str
     release_date: date

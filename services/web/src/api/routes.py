@@ -1,10 +1,27 @@
 from flask_restful import Resource
+
 from . import api
+from handler.movie import MovieHandler
+from usecase.movie.service import MovieService
+from repository.movie_repository import MovieRepository
+
+"""
+Instantiate Movies
+"""
+
+# movie repository
+movie_rep = MovieRepository()
+
+# movie service
+movie_service = MovieService(movie_rep)
+
+"""
+API Endpoints
+"""
 
 
-class HelloWorld(Resource):
-    def get(self):
-        return {'hello': 'world'}
-
-
-api.add_resource(HelloWorld, '/')
+api.add_resource(
+        MovieHandler,
+        '/movie/<int:movie_id>',
+        resource_class_kwargs={'service': movie_service}
+    )

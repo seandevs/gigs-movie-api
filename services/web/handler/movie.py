@@ -1,13 +1,17 @@
+from flask_restful import Resource
+
+from presenter.movie import MovieView
+
 class MovieHandler(Resource):
 
     def __init__(self, **kwargs):
         self.service = kwargs['service']
 
     def get(self, movie_id):
-        try:
-            movie = self.service.get(movie_id)
-        except Exception:
-            abort(404, message=f"Movie with {movie_id} doesn't exist")
+        movie = self.service.get(movie_id)
+
+        if not movie:
+            return None
 
         movie_view = MovieView(
                 movie_id,
