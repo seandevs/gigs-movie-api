@@ -1,9 +1,10 @@
-from datetime import date
+from datetime import date, datetime
 
 from flask.cli import FlaskGroup
 
 from src import db, create_app
 from src.entity.movie import Movie
+from src.entity.showtime import ShowTime
 
 app = create_app()
 
@@ -26,6 +27,15 @@ def seed_db():
         runtime="106 min"
     )
     db.session.add(new_movie)
+
+    new_showtime = ShowTime(
+        date=date(2022, 6, 10),
+        time=datetime.now(),
+        price=20.00,
+        movie_id=1
+    )
+    db.session.add(new_showtime)
+
     db.session.commit()
 
 
