@@ -6,7 +6,7 @@ from datetime import date, datetime
 class ShowTimeView:
     id_: int
     date: date
-    time: datetime 
+    time: datetime
     price: float
 
     def json(self):
@@ -16,4 +16,3 @@ class ShowTimeView:
                 'time': self.time.isoformat(),
                 'price': self.price,
             }
-

@@ -17,7 +17,7 @@ class ShowTimeRepository():
 
     def delete(self, id_):
         try:
-            showtime = self.get(id)
+            showtime = self.get(id_)
             db.session.delete(showtime)
             db.session.commit()
         except Exception:
