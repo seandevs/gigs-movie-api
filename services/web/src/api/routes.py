@@ -18,6 +18,7 @@ movie_service = MovieService(movie_rep)
 # showtime repository
 showtime_rep = ShowTimeRepository()
 
+# showtime service
 showtime_service = ShowTimeService(showtime_rep)
 
 api.add_resource(
@@ -28,6 +29,6 @@ api.add_resource(
 
 api.add_resource(
         ShowTimeHandler,
-        '/movies/schedule/<int:movie_id>',
+        '/movies/<int:movie_id>/schedule',
         resource_class_kwargs={'service': showtime_service}
     )
