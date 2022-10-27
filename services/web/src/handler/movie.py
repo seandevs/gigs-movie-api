@@ -2,6 +2,7 @@ from flask_restful import Resource, abort
 
 from src.presenter.movie import MovieView
 
+
 class MovieHandler(Resource):
 
     def __init__(self, **kwargs):
@@ -22,4 +23,3 @@ class MovieHandler(Resource):
             )
 
         return movie_view.json()
-

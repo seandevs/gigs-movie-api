@@ -1,24 +1,14 @@
-from flask_restful import Resource
-
-from . import api
 from src.handler.movie import MovieHandler
 from src.usecase.movie.service import MovieService
 from src.repository.movie_repository import MovieRepository
+from . import api
 
-"""
-Instantiate Movies
-"""
 
 # movie repository
 movie_rep = MovieRepository()
 
 # movie service
 movie_service = MovieService(movie_rep)
-
-"""
-API Endpoints
-"""
-
 
 api.add_resource(
         MovieHandler,

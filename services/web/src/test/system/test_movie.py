@@ -16,6 +16,7 @@ fixture_data = (
     ),
 )
 
+
 class TestMovie(unittest.TestCase):
     def setUp(self):
         os.environ["DATABASE_URL"] = "sqlite://"
@@ -40,12 +41,13 @@ class TestMovie(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 404)
-        self.assertEqual(data.get("message"), f"Movie with id {invalid_id} doesn't exist")
+        self.assertEqual(
+                data.get("message"),
+                f"Movie with id {invalid_id} doesn't exist"
+            )
 
     def test_movie_existant(self):
         valid_id = 1
         res = self.app.get(f"v1/movies/{valid_id}")
-        data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
-

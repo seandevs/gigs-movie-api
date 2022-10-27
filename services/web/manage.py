@@ -19,13 +19,13 @@ def create_db():
 
 @cli.command("seed_db")
 def seed_db():
-    new_movie1=Movie(
+    new_movie = Movie(
         name="The Fast and the Furious",
         release_date=date(2001, 6, 22),
         imdb_rating=6.8,
         runtime="106 min"
     )
-    db.session.add(new_movie1)
+    db.session.add(new_movie)
     db.session.commit()
 
 
