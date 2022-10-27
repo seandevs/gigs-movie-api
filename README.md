@@ -1,6 +1,8 @@
 # Gigs Movie API
 
 ## Development
+Update the `IMDB_KEY` in `.env.dev` with your API Key.  
+
 Start the application with detached docker-compose.
 ```
 $ docker-compose up -d
@@ -34,6 +36,13 @@ $ curl --request POST --url http://localhost:5000/v1/movies/{movie_id}/schedule 
 $ GET showtimes by movie ID
 $ curl --request GET \
   --url http://localhost:5000/v1/movies/{movie_id}/schedule
+```
+
+####IMDB Movie
+```
+# GET an IMDB movie by ID (make sure to update your API key in env.dev)
+$ curl --request GET \
+  --url http://localhost:5000/v1/imdb_movies/{imdb_movie_id}
 ```
 
 ## Running Tests
