@@ -12,3 +12,9 @@ class ShowTimeService():
                 movie_id=movie_id
             )
         return self.repository.create(showtime)
+
+    def delete(self, id_):
+        self.repository.delete(id_)
+
+    def delete_by_movie(self, movie_id):
+        self.repository.delete_by_movie(movie_id)

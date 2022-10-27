@@ -32,16 +32,18 @@ class ShowTimeHandler(Resource):
         show_date = datetime.datetime.strptime(raw_date, '%Y-%m-%d')
 
         try:
+            self.service.delete_by_movie(movie_id)
+
             for time in args['times']:
                 movie_time = datetime.datetime.strptime(time, '%H:%M').time()
-                showtime = self.service.create(
+                self.service.create(
                     date=show_date,
                     time=movie_time,
                     price=args.price,
                     movie_id=movie_id
                 )
 
-        except Exception as e:
+        except Exception:
             abort(400, message="An error occurred.")
 
         return "", 201
