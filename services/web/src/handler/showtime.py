@@ -28,19 +28,19 @@ class ShowTimeHandler(Resource):
         self.service = kwargs['service']
 
     def get(self, movie_id):
-       showtimes = self.service.find_all_by_movie(movie_id) 
-       showtime_json = {"movie": movie_id, "show_times": []}
-       for showtime in showtimes:
-           showtime_view = ShowTimeView(
-                   showtime.id,
-                   showtime.date,
-                   showtime.time,
-                   showtime.price
-                )
+        showtimes = self.service.find_all_by_movie(movie_id)
+        showtime_json = {"movie": movie_id, "show_times": []}
+        for showtime in showtimes:
+            showtime_view = ShowTimeView(
+                    showtime.id,
+                    showtime.date,
+                    showtime.time,
+                    showtime.price
+                    )
 
-           showtime_json.get("show_times").append(showtime_view.json())
+            showtime_json.get("show_times").append(showtime_view.json())
 
-       return showtime_json
+        return showtime_json
 
     def post(self, movie_id):
         args = ShowTimeHandler.parser.parse_args()
