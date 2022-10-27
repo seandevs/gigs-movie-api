@@ -1,6 +1,6 @@
 from flask_restful import Resource
 
-from presenter.movie import MovieView
+from src.presenter.movie import MovieView
 
 class MovieHandler(Resource):
 

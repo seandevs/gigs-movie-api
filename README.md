@@ -15,3 +15,9 @@ Seed the database
 ```
 $ docker-compose exec web python manage.py seed_db
 ```
+
+## Running Tests
+Within the `service/web` directory.
+```
+$ python -m unittest
+```
