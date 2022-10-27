@@ -9,3 +9,4 @@ class Movie(db.Model):
     release_date = db.Column(db.Date)
     imdb_rating = db.Column(db.Float)
     runtime = db.Column(db.String(50))
+    showtimes = db.relationship('ShowTime', backref='movie')
