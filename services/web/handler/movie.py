@@ -15,10 +15,10 @@ class MovieHandler(Resource):
 
         movie_view = MovieView(
                 movie_id,
-                movie.get('name'),
-                movie.get('release_date'),
-                movie.get('imdb_rating'),
-                movie.get('runtime')
+                movie.name,
+                movie.release_date,
+                movie.imdb_rating,
+                movie.runtime
             )
 
         return movie_view.json()

@@ -14,7 +14,7 @@ class MovieView:
         return {
                 'id': self.id_,
                 'name': self.name,
-                'release_date': self.release_date,
+                'release_date': self.release_date.isoformat(),
                 'imdb_rating': self.imdb_rating,
                 'runtime': self.runtime
             }
