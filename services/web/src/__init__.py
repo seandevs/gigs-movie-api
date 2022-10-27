@@ -1,20 +1,16 @@
-from flask import Flask
-from flask_restful import Resource, Api
+from flask import Flask, Blueprint
+from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-app.config.from_object("src.config.Config")
-db = SQLAlchemy(app)
-api = Api(app)
+db = SQLAlchemy()
 
-class Test(db.Model):
-    __tablename__ = "tests"
-    id = db.Column(db.Integer, primary_key=True)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object("src.config.Config")
 
+    from .api import api_bp
+    app.register_blueprint(api_bp)
 
-class HelloWorld(Resource):
-    def get(self):
-        return {'hello': 'world'}
+    db.init_app(app)
 
-
-api.add_resource(HelloWorld, '/')
+    return app
