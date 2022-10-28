@@ -2,6 +2,9 @@
 
 ## Development
 Update the `IMDB_KEY` in `.env.dev` with your API Key.  
+Note that when you seed the database, there are 2 usertypes:
+- cinema owner: `username: cinemaowner1, password: abc123`  
+- movie goer: `username: moviegoer1, password: abc123`  
 
 Start the application with detached docker-compose.
 ```
@@ -69,3 +72,6 @@ Within the `service/web` directory.
 ```
 $ python -m unittest
 ```
+
+### Swagger Docs
+Swagger docs can be found at `localhost:5000/apidocs`.

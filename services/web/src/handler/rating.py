@@ -36,6 +36,29 @@ class RatingHandler(Resource):
         self.service = kwargs.get('service')
 
     def post(self, movie_id):
+        """
+        Post a rating for a movie.
+        ---
+        tags:
+          - Rating
+        parameters:
+          - in: path
+            name: movie_id
+            type: integer
+          - in: body
+            name: value
+            description: JSON parameters
+            schema:
+              properties:
+                value:
+                  type: integer
+                  description: Rating value
+                  example: 1
+            
+        responses:
+          201:
+            description: OK
+        """
         args = RatingHandler.parser.parse_args()
         value = args.value
         try:
@@ -47,4 +70,4 @@ class RatingHandler(Resource):
         except Exception:
             abort(400, message="An error occurred.")
 
-        return "", 201
+        return "OK", 201

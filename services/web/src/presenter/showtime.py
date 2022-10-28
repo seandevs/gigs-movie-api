@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date, datetime
+from marshmallow import Schema, fields
 
 
 @dataclass
@@ -16,3 +17,10 @@ class ShowTimeView:
                 'time': self.time.isoformat(),
                 'price': self.price,
             }
+
+
+class ShowTimeSchema(Schema):
+    id = fields.Int()
+    date = fields.Str()
+    time = fields.Str()
+    price = fields.Float()

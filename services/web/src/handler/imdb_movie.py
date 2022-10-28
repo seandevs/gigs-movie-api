@@ -7,6 +7,21 @@ class IMDBMovieHandler(Resource):
         self.service = kwargs.get('service')
 
     def get(self, imdb_movie_id):
+        """
+        Get the IMDB Movie based on ID
+        ---
+        tags:
+          - IMDB Movie
+        parameters:
+          - in: path
+            name: imdb_movie_id
+            type: string
+            default: tt0232500
+        responses:
+          200:
+            description: IMDB movie response
+        """
+
         response = self.service.get(imdb_movie_id)
 
         if response.get("Response") == False:

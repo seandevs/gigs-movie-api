@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flasgger import Swagger
 
 db = SQLAlchemy()
 
@@ -10,6 +11,7 @@ def create_app():
 
     from .api import api_bp
     app.register_blueprint(api_bp)
+    Swagger(app)
 
     db.init_app(app)
 
