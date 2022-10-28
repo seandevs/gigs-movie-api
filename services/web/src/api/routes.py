@@ -10,6 +10,10 @@ from src.handler.imdb_movie import IMDBMovieHandler
 from src.usecase.imdb_movie.service import IMDBMovieService
 from src.repository.imdb_movie_repository import IMDBMovieRepository
 
+from src.handler.rating import RatingHandler
+from src.usecase.rating.service import RatingService
+from src.repository.rating_repository import RatingRepository
+
 from . import api
 
 
@@ -24,6 +28,10 @@ showtime_service = ShowTimeService(showtime_rep)
 # imdb
 imdb_movie_rep = IMDBMovieRepository()
 imdb_movie_service = IMDBMovieService(imdb_movie_rep)
+
+# rating
+rating_rep = RatingRepository()
+rating_service = RatingService(rating_rep)
 
 api.add_resource(
         MovieHandler,
@@ -42,3 +50,9 @@ api.add_resource(
         '/imdb_movies/<string:imdb_movie_id>',
         resource_class_kwargs={'service': imdb_movie_service}
         )
+
+api.add_resource(
+        RatingHandler,
+        '/movies/<int:movie_id>/rating',
+        resource_class_kwargs={'service': rating_service}
+    )
