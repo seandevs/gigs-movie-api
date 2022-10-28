@@ -6,7 +6,7 @@ from src.presenter.movie import MovieView
 class MovieHandler(Resource):
 
     def __init__(self, **kwargs):
-        self.service = kwargs['service']
+        self.service = kwargs.get('service')
 
     def get(self, movie_id):
         movie = self.service.get(movie_id)

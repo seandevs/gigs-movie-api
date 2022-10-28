@@ -1,11 +1,30 @@
 import datetime
 
 from flask_restful import Resource, abort, reqparse
+from functools import wraps
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from src.presenter.showtime import ShowTimeView
 
+from src.usecase.user.service import UserService
+from src.repository.user_repository import UserRepository
+
+auth = HTTPBasicAuth()
+
+# user
+user_rep = UserRepository()
+user_service = UserService(user_rep)
+
+@auth.verify_password
+def verify_password(username, password):
+    user = user_service.find_by_username(username)
+    if user is not None and user.role == 'cinemaowner' and check_password_hash(user.password, password):
+        return user.username
 
 class ShowTimeHandler(Resource):
+    method_decorators = {'post': [auth.login_required]}
+
     parser = reqparse.RequestParser()
     parser.add_argument(
             'date',
@@ -25,7 +44,7 @@ class ShowTimeHandler(Resource):
         )
 
     def __init__(self, **kwargs):
-        self.service = kwargs['service']
+        self.service = kwargs.get('service')
 
     def get(self, movie_id):
         showtimes = self.service.find_all_by_movie(movie_id)
