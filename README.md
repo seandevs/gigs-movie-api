@@ -29,7 +29,11 @@ $ curl --request GET \
 ###ShowTimes
 ```
 # POST showtimes by movie ID
-$ curl --request POST --url http://localhost:5000/v1/movies/{movie_id}/schedule --header 'Content-Type: application/json' --data '{"date":"2001-06-22", "times": ["07:41"], "price": 20.20}'
+# This is Basic Auth with the default user with username: cinemaowner1 and password: abc123
+$ curl --location --request POST 'http://localhost:5000/v1/movies/1/schedule' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic Y2luZW1hb3duZXIxOmFiYzEyMw==' \
+  --data-raw '{"date":"2001-06-22", "times": ["07:41"], "price": 20.40}'
 ```
 
 ```

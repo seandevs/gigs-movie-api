@@ -1,10 +1,12 @@
 from datetime import date, datetime
+from werkzeug.security import generate_password_hash
 
 from flask.cli import FlaskGroup
 
 from src import db, create_app
 from src.entity.movie import Movie
 from src.entity.showtime import ShowTime
+from src.entity.user import User
 
 app = create_app()
 
@@ -35,6 +37,20 @@ def seed_db():
         movie_id=1
     )
     db.session.add(new_showtime)
+
+    new_cinema_owner = User(
+        username="cinemaowner1",
+        password=generate_password_hash("abc123"),
+        role="cinemaowner"
+    )
+    db.session.add(new_cinema_owner)
+
+    new_cinema_owner = User(
+        username="moviegoer1",
+        password=generate_password_hash("abc123"),
+        role="moviegoer"
+    )
+    db.session.add(new_cinema_owner)
 
     db.session.commit()
 

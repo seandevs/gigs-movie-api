@@ -13,22 +13,16 @@ from src.repository.imdb_movie_repository import IMDBMovieRepository
 from . import api
 
 
-# movie repository
+# movie
 movie_rep = MovieRepository()
-
-# movie service
 movie_service = MovieService(movie_rep)
 
-# showtime repository
+# showtime
 showtime_rep = ShowTimeRepository()
-
-# showtime service
 showtime_service = ShowTimeService(showtime_rep)
 
-# imdb repository
+# imdb
 imdb_movie_rep = IMDBMovieRepository()
-
-# imdb service
 imdb_movie_service = IMDBMovieService(imdb_movie_rep)
 
 api.add_resource(
