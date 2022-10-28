@@ -1,20 +1,8 @@
-from dataclasses import dataclass
-from datetime import date
+from marshmallow import Schema, fields
 
-
-@dataclass
-class MovieView:
-    id_: int
-    name: str
-    release_date: date
-    imdb_rating: float
-    runtime: str
-
-    def json(self):
-        return {
-                'id': self.id_,
-                'name': self.name,
-                'release_date': self.release_date.isoformat(),
-                'imdb_rating': self.imdb_rating,
-                'runtime': self.runtime
-            }
+class MovieSchema(Schema):
+    id = fields.Int()
+    name = fields.Str()
+    release_date = fields.Str()
+    imdb_rating = fields.Float()
+    runtime = fields.Str()

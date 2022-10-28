@@ -2,6 +2,7 @@ from datetime import date, datetime
 from werkzeug.security import generate_password_hash
 
 from flask.cli import FlaskGroup
+# from flasgger import Swagger
 
 from src import db, create_app
 from src.entity.movie import Movie

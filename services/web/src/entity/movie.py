@@ -10,3 +10,4 @@ class Movie(db.Model):
     imdb_rating = db.Column(db.Float)
     runtime = db.Column(db.String(50))
     showtimes = db.relationship('ShowTime', backref='movie')
+    ratings = db.relationship('Rating', backref='movie')
